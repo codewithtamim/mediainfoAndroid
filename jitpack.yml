@@ -3,13 +3,18 @@ jdk:
 
 before_install:
   - chmod +x gradlew
+  # JitPack exports GIT_DIR/GIT_WORK_TREE for its own checkout; they break
+  # submodule commands ("Not a git repository: .../.git/modules/..."), so
+  # clear them. All lines run in one shell, so this persists into the build.
+  - unset GIT_DIR GIT_WORK_TREE GIT_NAMESPACE GIT_INDEX_FILE GIT_COMMON_DIR
   - git submodule update --init --recursive
   - sh scripts/apply-patches.sh
   - export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH"
+  # Best-effort only: the sdkmanager CLI crashes on newer JDKs (missing JAXB).
+  # Missing packages are auto-installed by AGP from the pinned versions in
+  # mediainfo-lib/build.gradle (ndkVersion / cmake version).
   - yes | sdkmanager --licenses > /dev/null || true
-  - echo "y" | sdkmanager --install "ndk;27.2.12479018" "cmake;3.22.1"
-  - echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/27.2.12479018"
-  - echo "ANDROID_NDK_ROOT=$ANDROID_HOME/ndk/27.2.12479018"
+  - echo "y" | sdkmanager --install "ndk;27.2.12479018" "cmake;3.22.1" || true
 
 install:
   - ./gradlew :mediainfo-lib:assembleRelease -x test --no-daemon --stacktrace

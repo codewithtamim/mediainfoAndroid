@@ -1,7 +1,7 @@
 # MediaInfo Android Library
 
-[![](https://jitpack.io/v/marlboro-advance/mediainfoAndroid.svg)](https://jitpack.io/#marlboro-advance/mediainfoAndroid)
-[![Android Build CI](https://github.com/marlboro-advance/mediainfoAndroid/actions/workflows/build.yml/badge.svg)](https://github.com/marlboro-advance/mediainfoAndroid/actions/workflows/build.yml)
+[![](https://jitpack.io/v/codewithtamim/mediainfoAndroid.svg)](https://jitpack.io/#codewithtamim/mediainfoAndroid)
+[![Android Build CI](https://github.com/codewithtamim/mediainfoAndroid/actions/workflows/build.yml/badge.svg)](https://github.com/codewithtamim/mediainfoAndroid/actions/workflows/build.yml)
 
 An Android library wrapper for [MediaInfoLib](https://mediaarea.net/MediaInfo), providing
 comprehensive media file analysis capabilities. Extract detailed technical and tag information from
@@ -36,12 +36,14 @@ dependencies {
 }
 ```
 
-### JitPack (Alternative)
+### JitPack
 
-Add the JitPack repository to your project's `settings.gradle` or `settings.gradle.kts`:
+**Step 1 — Add the JitPack repository** to your project's `settings.gradle`
+(or `settings.gradle.kts`):
 
 ```groovy
 dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
@@ -50,12 +52,42 @@ dependencyResolutionManagement {
 }
 ```
 
-And add:
-```groovy
-dependencies {
-    implementation 'com.github.marlboro-advance:mediainfoAndroid:1.0.0-beta'
+Kotlin (`settings.gradle.kts`):
+
+```kotlin
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://jitpack.io")
+    }
 }
 ```
+
+**Step 2 — Add the dependency** in your app module's `build.gradle`
+(or `build.gradle.kts`). Replace `Tag` with the release you want
+(e.g. `v1.0.0-beta` — see the
+[releases page](https://github.com/codewithtamim/mediainfoAndroid/releases)):
+
+Groovy (`build.gradle`):
+
+```groovy
+dependencies {
+    implementation 'com.github.codewithtamim:mediainfoAndroid:Tag'
+}
+```
+
+Kotlin (`build.gradle.kts`):
+
+```kotlin
+dependencies {
+    implementation("com.github.codewithtamim:mediainfoAndroid:Tag")
+}
+```
+
+Then sync Gradle. JitPack builds the AAR from source on first request,
+so the very first sync for a new tag can take a few minutes.
 
 ## Quick Start
 

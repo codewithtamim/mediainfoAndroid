@@ -3,6 +3,12 @@
 # Patches are stored submodule-relative (a/Source/...), applied with `git apply` inside each submodule.
 set -eu
 
+# JitPack (and some CI setups) export GIT_DIR / GIT_WORK_TREE pointing at their
+# own git metadata dir. That breaks every `git -C <submodule>` invocation
+# ("Not a git repository: .../.git/modules/..."), so clear them here. This also
+# covers the Gradle applyPatches task, which inherits the ambient environment.
+unset GIT_DIR GIT_WORK_TREE GIT_NAMESPACE GIT_INDEX_FILE GIT_COMMON_DIR
+
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
 apply_patch() {
