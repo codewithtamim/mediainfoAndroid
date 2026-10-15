@@ -1,0 +1,13 @@
+diff --git a/Source/MediaInfoDLL/MediaInfoJNI.cpp b/Source/MediaInfoDLL/MediaInfoJNI.cpp
+index 7bd12d45e..10dfc9673 100644
+--- a/Source/MediaInfoDLL/MediaInfoJNI.cpp
++++ b/Source/MediaInfoDLL/MediaInfoJNI.cpp
+@@ -317,7 +317,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void*)
+ 
+     jclass cls = NULL;
+ #ifdef __ANDROID__
+-    cls = env->FindClass("net/mediaarea/mediainfo/MediaInfo");
++    cls = env->FindClass("net/mediaarea/mediainfo/lib/MediaInfo");
+ #else
+     cls = env->FindClass("MediaInfo");
+ #endif

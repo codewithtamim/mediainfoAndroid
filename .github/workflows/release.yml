@@ -3,7 +3,7 @@ name: Build and Release
 on:
   push:
     tags:
-      - 'v*.*.*'
+      - 'v*'
   workflow_dispatch:
 
 permissions:
@@ -46,6 +46,14 @@ jobs:
           CLEAN_VERSION="${RAW_VERSION#v}"
           echo "VERSION=$RAW_VERSION" >> $GITHUB_OUTPUT
           echo "CLEAN_VERSION=$CLEAN_VERSION" >> $GITHUB_OUTPUT
+          if [[ "$CLEAN_VERSION" == *"-"* ]]; then
+            echo "IS_PRERELEASE=true" >> $GITHUB_OUTPUT
+          else
+            echo "IS_PRERELEASE=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Apply submodule patches
+        run: sh scripts/apply-patches.sh
 
       - name: Build AAR and Publish to Maven Central
         run: |
@@ -93,4 +101,4 @@ jobs:
             }
             ```
           draft: false
-          prerelease: false
+          prerelease: ${{ steps.get_version.outputs.IS_PRERELEASE == 'true' }}

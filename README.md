@@ -24,7 +24,7 @@ Add `mavenCentral()` to your repositories, then add the dependency:
 
 ```groovy
 dependencies {
-    implementation 'io.github.marlboro-advance:mediainfo-android:1.0.1'
+    implementation 'io.github.marlboro-advance:mediainfo-android:1.0.0-beta'
 }
 ```
 
@@ -32,7 +32,7 @@ dependencies {
 
 ```kotlin
 dependencies {
-    implementation("io.github.marlboro-advance:mediainfo-android:1.0.1")
+    implementation("io.github.marlboro-advance:mediainfo-android:1.0.0-beta")
 }
 ```
 
@@ -53,7 +53,7 @@ dependencyResolutionManagement {
 And add:
 ```groovy
 dependencies {
-    implementation 'com.github.marlboro-advance:mediainfoAndroid:1.0.1'
+    implementation 'com.github.marlboro-advance:mediainfoAndroid:1.0.0-beta'
 }
 ```
 
@@ -418,6 +418,9 @@ cd mediainfoAndroid
 # Initialize submodules
 git submodule update --init --recursive
 
+# Apply local patches to the submodules (also runs automatically via Gradle preBuild)
+sh scripts/apply-patches.sh
+
 # Build the library
 ./gradlew build
 
@@ -426,6 +429,10 @@ git submodule update --init --recursive
 ```
 
 The AAR will be generated in `mediainfo-lib/build/outputs/aar/`.
+
+Native sources (`MediaInfoLib`, `ZenLib`) are Git submodules tracking upstream
+`master`; Android-specific fixes live in `patches/*.patch` and are applied
+automatically on every build.
 
 ## ProGuard/R8
 

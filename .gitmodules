@@ -1,0 +1,8 @@
+[submodule "dependencies/MediaInfoLib"]
+	path = dependencies/MediaInfoLib
+	url = https://github.com/MediaArea/MediaInfoLib.git
+	branch = master
+[submodule "dependencies/ZenLib"]
+	path = dependencies/ZenLib
+	url = https://github.com/MediaArea/ZenLib.git
+	branch = master

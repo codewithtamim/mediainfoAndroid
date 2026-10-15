@@ -45,6 +45,23 @@ android {
     }
 }
 
+// Applies patches/*.patch onto the MediaInfoLib/ZenLib submodules before
+// the native (CMake/NDK) build runs. The script is idempotent: already-applied
+// patches are skipped, and a patch that no longer applies fails loudly so
+// upstream drift is caught instead of silently building unpatched sources.
+tasks.register("applyPatches", Exec) {
+    description = "Applies patches/*.patch onto git submodules (idempotent)."
+    group = "build setup"
+    workingDir = rootDir
+    commandLine("sh", "scripts/apply-patches.sh")
+}
+
+afterEvaluate {
+    tasks.named("preBuild").configure {
+        dependsOn("applyPatches")
+    }
+}
+
 dependencies {
     // No dependencies needed - just Kotlin stdlib (automatically included)
 }

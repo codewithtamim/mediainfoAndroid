@@ -1,0 +1,15 @@
+jdk:
+  - openjdk21
+
+before_install:
+  - chmod +x gradlew
+  - git submodule update --init --recursive
+  - sh scripts/apply-patches.sh
+  - export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH"
+  - yes | sdkmanager --licenses > /dev/null || true
+  - echo "y" | sdkmanager --install "ndk;27.2.12479018" "cmake;3.22.1"
+  - echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/27.2.12479018"
+  - echo "ANDROID_NDK_ROOT=$ANDROID_HOME/ndk/27.2.12479018"
+
+install:
+  - ./gradlew :mediainfo-lib:assembleRelease -x test --no-daemon --stacktrace
