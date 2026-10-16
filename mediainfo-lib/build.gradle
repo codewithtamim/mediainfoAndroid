@@ -86,7 +86,7 @@ mavenPublishing {
         name = "mediainfoAndroid"
         description = "An Android library wrapper for MediaInfoLib, providing comprehensive media analysis capabilities."
         inceptionYear = "2024"
-        url = "https://github.com/marlboro-advance/mediainfoAndroid"
+        url = "https://github.com/codewithtamim/mediainfoAndroid"
         licenses {
             license {
                 name = "BSD-2-Clause"
@@ -96,15 +96,15 @@ mavenPublishing {
         }
         developers {
             developer {
-                id = "marlboro-advance"
+                id = "codewithtamim"
                 name = "MarlboroAdvance"
-                url = "https://github.com/marlboro-advance"
+                url = "https://github.com/codewithtamim"
             }
         }
         scm {
-            url = "https://github.com/marlboro-advance/mediainfoAndroid"
-            connection = "scm:git:git://github.com/marlboro-advance/mediainfoAndroid.git"
-            developerConnection = "scm:git:ssh://git@github.com/marlboro-advance/mediainfoAndroid.git"
+            url = "https://github.com/codewithtamim/mediainfoAndroid"
+            connection = "scm:git:git://github.com/codewithtamim/mediainfoAndroid.git"
+            developerConnection = "scm:git:ssh://git@github.com/codewithtamim/mediainfoAndroid.git"
         }
     }
 }

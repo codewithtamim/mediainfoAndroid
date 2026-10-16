@@ -78,18 +78,20 @@ jobs:
           body: |
             ## MediaInfo Android Library ${{ steps.get_version.outputs.VERSION }}
 
-            ### Maven Central
+            ### JitPack
+
+            Add `maven { url 'https://jitpack.io' }` to your repositories, then:
 
             ```groovy
             dependencies {
-                implementation 'io.github.marlboro-advance:mediainfo-android:${{ steps.get_version.outputs.CLEAN_VERSION }}'
+                implementation 'com.github.codewithtamim:mediainfoAndroid:${{ steps.get_version.outputs.VERSION }}'
             }
             ```
 
             Or via Kotlin DSL:
             ```kotlin
             dependencies {
-                implementation("io.github.marlboro-advance:mediainfo-android:${{ steps.get_version.outputs.CLEAN_VERSION }}")
+                implementation("com.github.codewithtamim:mediainfoAndroid:${{ steps.get_version.outputs.VERSION }}")
             }
             ```
 

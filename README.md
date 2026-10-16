@@ -16,26 +16,6 @@ video, audio, and image files directly in your Android app.
 - **Android Optimized** - Supports all major architectures (arm64-v8a, armeabi-v7a, x86, x86_64)
 - **Modern Android** - Supports Android 5.0 (API 21) and above
 
-### Maven Central (Recommended)
-
-Add `mavenCentral()` to your repositories, then add the dependency:
-
-**Groovy (`build.gradle`):**
-
-```groovy
-dependencies {
-    implementation 'io.github.marlboro-advance:mediainfo-android:1.0.0-beta'
-}
-```
-
-**Kotlin (`build.gradle.kts`):**
-
-```kotlin
-dependencies {
-    implementation("io.github.marlboro-advance:mediainfo-android:1.0.0-beta")
-}
-```
-
 ### JitPack
 
 **Step 1 — Add the JitPack repository** to your project's `settings.gradle`
@@ -444,7 +424,7 @@ MediaInfo supports a wide range of media formats including:
 
 ```bash
 # Clone the repository
-git clone https://github.com/marlboro-advance/mediainfoAndroid.git
+git clone https://github.com/codewithtamim/mediainfoAndroid.git
 cd mediainfoAndroid
 
 # Initialize submodules
