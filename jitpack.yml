@@ -15,5 +15,9 @@ before_install:
   - yes | sdkmanager --licenses > /dev/null || true
   - echo "y" | sdkmanager --install "ndk;27.2.12479018" "cmake;3.22.1" || true
 
+# publishToMavenLocal is required: JitPack harvests artifacts from ~/.m2
+# ("Looking for pom.xml in build directory and ~/.m2"). assembleRelease
+# alone leaves the AAR only under mediainfo-lib/build and JitPack reports
+# "No build artifacts found".
 install:
-  - ./gradlew :mediainfo-lib:assembleRelease -x test --no-daemon --stacktrace
+  - ./gradlew :mediainfo-lib:assembleRelease :mediainfo-lib:publishToMavenLocal -x test --no-daemon --stacktrace
