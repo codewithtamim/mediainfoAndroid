@@ -3,11 +3,10 @@ jdk:
 
 before_install:
   - chmod +x gradlew
-  # JitPack exports GIT_DIR/GIT_WORK_TREE for its own checkout; they break
-  # submodule commands ("Not a git repository: .../.git/modules/..."), so
-  # clear them. All lines run in one shell, so this persists into the build.
-  - unset GIT_DIR GIT_WORK_TREE GIT_NAMESPACE GIT_INDEX_FILE GIT_COMMON_DIR
-  - git submodule update --init --recursive
+  # NOTE: no `git submodule update` here on purpose -- JitPack's detached
+  # GIT_DIR setup breaks submodule plumbing. scripts/apply-patches.sh is
+  # self-sufficient: it repairs missing/broken checkouts via an explicit
+  # clone of the pinned revisions and then applies patches/*.patch.
   - sh scripts/apply-patches.sh
   - export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH"
   # Best-effort only: the sdkmanager CLI crashes on newer JDKs (missing JAXB).
